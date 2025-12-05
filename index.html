@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InstaClone</title>
+    <link rel="stylesheet" href="style.css" />  <!-- ne touche pas aux commentaires -->
+</head>
+
+<body>
+
+    <!--barre de navigation-->
+    <nav class="navbar">
+        <h1 class="logo">InstaClone</h1>
+
+        <div id="nav-user" class="nav-user">
+            <!--si pas connecté-->
+            <button id="btn-login" class="nav-btn">Connexion</button>
+            <button id="btn-signup" class="nav-btn">Inscription</button>
+
+            <!--si connecté (sera géré en js)-->
+        </div>
+    </nav>
+
+    <!--recherche-->
+    <section id="search-section" class="search-section">
+        <form id="search-form" class="search-form">
+            <input 
+                type="text" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Rechercher une image..." 
+                required />
+            <button type="submit" class="search-btn">Rechercher</button>
+        </form>
+    </section>
+
+    <!--images-->
+    <main class="main-content">
+        <div id="photo-grid" class="photo-grid">
+            <!--images ajoutés en js-->
+        </div>
+    </main>
+
+    <!--modal detail image-->
+    <div id="modal" class="hidden modal">
+        <div id="modal-content" class="modal-content">
+
+            <span id="modal-close" class="modal-close">&times;</span>
+
+            <img id="modal-img" class="modal-img" src="" alt="image" />
+
+            <div id="modal-info" class="modal-info">
+                
+                <div id="like-section" class="like-section">
+                    <button id="btn-like" class="like-btn">❤️ Like</button>
+                    <span id="like-count" class="like-count">0</span>
+                </div>
+
+                <div id="comments-section" class="comments-section">
+                    <h3 class="comments-title">Commentaires</h3>
+
+                    <div id="comments-list" class="comments-list">
+                        <!--commentaires-->
+                    </div>
+
+                    <form id="comment-form" class="comment-form">
+                        <input 
+                            type="text" 
+                            id="comment-input" 
+                            class="comment-input" 
+                            placeholder="Votre commentaire..." 
+                            required />
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--modal login-->
+    <div id="modal-login" class="hidden modal">
+        <div class="modal-box">
+            <span class="close-btn" id="close-login">&times;</span>
+            <h2 class="modal-title">Connexion</h2>
+
+            <form id="login-form" class="auth-form">
+                <input type="email" id="login-email" class="auth-input" placeholder="Email" required />
+                <input type="password" id="login-password" class="auth-input" placeholder="Mot de passe" required />
+                <button type="submit" class="auth-btn">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <!--modal signup-->
+    <div id="modal-signup" class="hidden modal">
+        <div class="modal-box">
+            <span class="close-btn" id="close-signup">&times;</span>
+            <h2 class="modal-title">Inscription</h2>
+
+            <form id="signup-form" class="auth-form">
+                <input type="email" id="signup-email" class="auth-input" placeholder="Email" required />
+                <input type="password" id="signup-password" class="auth-input" placeholder="Mot de passe" required />
+                <button type="submit" class="auth-btn">Créer le compte</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
