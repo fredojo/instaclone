@@ -1,0 +1,55 @@
+###PHOTOS
+###avoir les photos api picsum
+GET http://localhost:3000/api/photos
+
+
+###AUTHENTIFICATION
+###inscription d'un utilisateur
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "fred",
+  "password": "1234"
+}
+
+###connexion d'un utilisateur
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "fred",
+  "password": "1234"
+}
+
+
+###LIKES
+###ajouter un like
+POST http://localhost:3000/api/likes/p1
+Content-Type: application/json
+
+{
+  "user_id": 2
+}
+
+###enlever un like
+DELETE http://localhost:3000/api/likes/p1
+Content-Type: application/json
+
+{
+  "user_id": 1
+}
+
+
+###COMMENTAIRES
+###ajouter un commentaire
+POST http://localhost:3000/api/comments/p1
+Content-Type: application/json
+
+{
+  "user_id": 2,
+  "content": "WOW!"
+}
+
+###montrer tout les commentaires d'une photo
+GET http://localhost:3000/api/comments/p1
