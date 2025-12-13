@@ -12,12 +12,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
-
-
 //api photos picsum
 
-
-//liste de photos depuis l'API Picsum
+//liste de photos depuis l'api picsum
 app.get("/api/photos", async (req, res)=>{
   try{
     const url = "https://picsum.photos/v2/list?limit=30";
@@ -46,88 +43,81 @@ app.get("/api/photos", async (req, res)=>{
 });
 
 //inscription d'un nouveau utilisateur
-app.post("/api/auth/register", async (req, res) =>{
-  try{
-    const {username, password} = req.body;
+app.post("/api/auth/register", async (req, res) => {
+  try {
+    const username = req.body.username || req.body.email;
+    const password = req.body.password;
 
-    //validation minimale: les deux champs doivent être la
     if (!username || !password){
       return res
         .status(400)
-        .json({error: "les champs username et password sont obligatoires"});
+        .json({ error: "Les champs username/email et password sont obligatoires." });
     }
 
-    //verifier si le username existe deja
     const existingUser = await db("users").where({username}).first();
 
     if (existingUser){
       return res
         .status(400)
-        .json({error: "ce nom d'utilisateur est deja utilisé"});
+        .json({ error: "Ce nom d'utilisateur existe deja." });
     }
 
     const ids = await db("users").insert({
       username,
-      password,
+      password
     });
 
     const newUser = await db("users").where({id: ids[0]}).first();
-
-    if (newUser){
-      delete newUser.password;
-    }
+    if (newUser) delete newUser.password;
 
     res.status(201).json(newUser);
+
   }catch (err){
-    console.error("erreur dans /api/auth/register:", err);
-    res.status(500).json({error: "erreur serveur"});
+    console.error("Erreur register:", err);
+    res.status(500).json({ error: "Erreur serveur." });
   }
 });
+
 
 
 //connexion d'un utilisateur
 app.post("/api/auth/login", async (req, res) => {
   try {
-    //on recupere ce que le client a envoyé dans un json
-    const {username, password} = req.body;
+    const username = req.body.username || req.body.email;
+    const password = req.body.password;
 
     if (!username || !password) {
       return res
         .status(400)
-        .json({error: "vesoin du nom de l'utilisateur et du mdp"});
+        .json({ error: "Username/email et password requis." });
     }
 
-    //on va dans sqlite table users pour trouver l'utilisateur
     const user = await db("users").where({ username }).first();
 
-    if (!user){
-      return res.status(400).json({error: "utilisateur introuvable"});
+    if (!user) {
+      return res.status(400).json({ error: "Utilisateur introuvable." });
     }
 
-    //on verifie le mdp et on le compare pour savoir si il est bon
-    if (user.password !== password){
-      return res.status(400).json({error: "le mdp n'est pas bon"});
+    if (user.password !== password) {
+      return res.status(400).json({ error: "Mdp incorrect." });
     }
-    //on renvoie l'utilisateur sans son mdp
+
     delete user.password;
-
-    //on repond au coté client pour qu'il sache qu'il est connecté
     res.json(user);
-  }catch (err){
-    console.error("erreur dans /api/auth/login:", err);
-    res.status(500).json({error: "erreur serveur"});
+
+  } catch (err) {
+    console.error("Erreur login:", err);
+    res.status(500).json({ error: "Erreur serveur." });
   }
 });
 
-//deconnexion = coté client supprime l'utilisateur gardé
+
+//deconnexion = cote client supprime l'utilisateur garde
 app.post("/api/auth/logout", (req, res) =>{
-  res.json({message: "deconnecte"});
+  res.json({message: "Déconnecté"});
 });
 
-//=======================
 //likes
-//=======================
-
 //ajouter un like
 app.post("/api/likes/:photoId", async (req, res) =>{
   try {//ma route recupere...
@@ -142,20 +132,20 @@ app.post("/api/likes/:photoId", async (req, res) =>{
     }
 
     const existingLike = await db("likes")
-      //on cherche dans la bd si la personne à deja liké
+      //on cherche dans la bd si la personne a deja like
       .where({user_id, photo_id: photoId})
       .first();
 
     //si oui erreur
     if (existingLike){
-      return res.status(400).json({error: "vous avez déjà liké cette photo"});
+      return res.status(400).json({error: "vous avez deja like cette photo"});
     }
     //on ajoute un nouveau like dans la bd
     const ids = await db("likes").insert({
       user_id,
       photo_id: photoId,
     });
-    //on récupère l’enregistrement créé
+    //on recupere l’enregistrement cree
     const newLike = await db("likes").where({id: ids[0]}).first();
 
     //on envoie cet objet avec un statut 201
@@ -166,8 +156,8 @@ app.post("/api/likes/:photoId", async (req, res) =>{
   }
 });
 
-// Retirer un like
-app.delete("/api/likes/:photoId", async (req, res) => {
+//enlever un like
+app.delete("/api/likes/:photoId", async (req, res) =>{
   try{
     const {photoId} = req.params;
     const {user_id} = req.body;
@@ -186,17 +176,14 @@ app.delete("/api/likes/:photoId", async (req, res) => {
         .json({error: "aucun like trouvé pour cet utilisateur sur cette photo"});
     }
 
-    res.json({message: "like supprimé"});
+    res.json({message: "like supprime"});
   }catch (err){
     console.error("erreur dans delete /api/likes:", err);
     res.status(500).json({error: "erreur serveur"});
   }
 });
 
-// =======================
-//  COMMENTS
-// =======================
-
+//comments
 //ajouter un commentaire
 app.post("/api/comments/:photoId", async (req, res) =>{
   try{
@@ -224,8 +211,8 @@ app.post("/api/comments/:photoId", async (req, res) =>{
   }
 });
 
-// Récupérer les commentaires d'une photo
-app.get("/api/comments/:photoId", async (req, res) => {
+//recuperer les commentaires d'une photo
+app.get("/api/comments/:photoId", async (req, res) =>{
   try {
     const {photoId} = req.params;
 
@@ -240,10 +227,7 @@ app.get("/api/comments/:photoId", async (req, res) => {
   }
 });
 
-// =======================
-//  Démarrage du serveur
-// =======================
-
+//demarrage du serveur
 createTables()
   .then(() =>{
     console.log("tables verifiees");

@@ -17,7 +17,7 @@ async function createTables() {
     await db.schema.createTable("users", (table) => {
       table.increments("id").primary();       //id int pk autoincremment
       table.string("username").notNullable().unique(); //nom d'utilisateur unique
-      table.string("password").notNullable();          //mot de passe hashé
+      table.string("password").notNullable();//mdp clair
       table.datetime("created_at").defaultTo(db.fn.now()); //date de création
     });
     console.log("Table 'users' creee..");
