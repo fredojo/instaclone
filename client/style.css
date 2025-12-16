@@ -184,3 +184,8 @@ body {
     color: white;
     cursor: pointer;
 }
+
+/*---Ajout Alex Bilan, forcer le masquage---*/
+.hidden {
+    display: none !important;
+}

@@ -8,7 +8,7 @@ const db = knex({
   useNullAsDefault: true,
 });
 
-//fonction qui va créer les tables si elles n'existent pas encore
+//fonction qui va creer les tables si elles n'existent pas encore
 async function createTables() {
   //table users
   const hasUsersTable = await db.schema.hasTable("users");
@@ -18,7 +18,7 @@ async function createTables() {
       table.increments("id").primary();       //id int pk autoincremment
       table.string("username").notNullable().unique(); //nom d'utilisateur unique
       table.string("password").notNullable();//mdp clair
-      table.datetime("created_at").defaultTo(db.fn.now()); //date de création
+      table.datetime("created_at").defaultTo(db.fn.now()); //date de creation
     });
     console.log("Table 'users' creee..");
 
@@ -29,25 +29,25 @@ async function createTables() {
 
   if (!hasLikesTable) {
     await db.schema.createTable("likes", (table) => {
-      table.increments("id").primary();  // id du like
-      table.integer("user_id").notNullable();  // qui like
-      table.string("photo_id").notNullable();  // quelle photo est likée
-      table.datetime("created_at").defaultTo(db.fn.now()); // date du like
+      table.increments("id").primary();  //id du like
+      table.integer("user_id").notNullable();  //qui like
+      table.string("photo_id").notNullable();  //quelle photo est like
+      table.datetime("created_at").defaultTo(db.fn.now()); //date du like
     });
     console.log("Table 'likes' creee..");
 
   }
 
-    // 3) Table comments
+    //table comments
   const hasCommentsTable = await db.schema.hasTable("comments");
 
   if (!hasCommentsTable) {
     await db.schema.createTable("comments", (table) => {
-      table.increments("id").primary();      // id du commentaire
-      table.integer("user_id").notNullable(); // qui a commenté
-      table.string("photo_id").notNullable(); // sur quelle photo
-      table.string("content").notNullable();  // texte du commentaire
-      table.datetime("created_at").defaultTo(db.fn.now()); // date du commentaire
+      table.increments("id").primary();      //id du commentaire
+      table.integer("user_id").notNullable(); //qui a donner un commentaire
+      table.string("photo_id").notNullable(); //sur quelle photo
+      table.string("content").notNullable();  //texte du commentaire
+      table.datetime("created_at").defaultTo(db.fn.now()); //date du commentaire
     });
     console.log("Table 'comments' creee..");
 

@@ -29,7 +29,7 @@ POST http://localhost:3000/api/likes/p1
 Content-Type: application/json
 
 {
-  "user_id": 2
+  "user_id": 5
 }
 
 ###enlever un like
@@ -37,7 +37,7 @@ DELETE http://localhost:3000/api/likes/p1
 Content-Type: application/json
 
 {
-  "user_id": 1
+  "user_id": 5
 }
 
 
@@ -47,8 +47,8 @@ POST http://localhost:3000/api/comments/p1
 Content-Type: application/json
 
 {
-  "user_id": 2,
-  "content": "WOW!"
+  "user_id": 5,
+  "content": "waaaa"
 }
 
 ###montrer tout les commentaires d'une photo
