@@ -1,191 +1,206 @@
-/* --- Style de base --- */
+/* --- Style de base : s’applique à TOUS les éléments HTML --- */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+    box-sizing: border-box;            /* inclut padding et bordure dans la taille totale */
+    margin: 0;                         /* enlève les marges par défaut du navigateur */
+    padding: 0;                        /* enlève les espacements internes par défaut */
+    font-family: Arial, sans-serif;    /* police par défaut du site */
 }
 
+/* BODY : touche toute la page */
 body {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2;         /* fond gris clair de la page */
 }
 
-/* --- Navbar  */
+/* --- Navbar : touche <nav class="navbar"> --- */
 .navbar {
-    background-color: white;
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
+    background-color: white;           /* fond blanc de la barre de navigation */
+    padding: 10px 15px;                /* espace intérieur (haut/bas – gauche/droite) */
+    display: flex;                     /* aligne les éléments sur une ligne */
+    justify-content: space-between;    /* espace entre le logo et les boutons */
+    align-items: center;               /* centre verticalement les éléments */
+    border-bottom: 1px solid #ccc;     /* ligne grise sous la navbar */
 }
 
+/* Logo : touche <h1 class="logo"> */
 .logo {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 24px;                   /* taille du texte du logo */
+    font-weight: bold;                /* met le texte en gras */
 }
 
+/* Boutons navbar : touche les boutons Connexion / Inscription */
 .nav-btn {
-    padding: 5px 10px;
-    margin-left: 5px;
-    border: 1px solid #0095f6;
-    background-color: #0095f6;
-    color: white;
-    cursor: pointer;
+    padding: 5px 10px;                 /* taille intérieure du bouton */
+    margin-left: 5px;                  /* espace entre les boutons */
+    border: 1px solid #0095f6;         /* bordure bleue */
+    background-color: #0095f6;         /* fond bleu */
+    color: white;                      /* texte blanc */
+    cursor: pointer;                   /* curseur en forme de main */
 }
 
-/* --- Recherche --- */
+/* --- Recherche : touche <section class="search-section"> --- */
 .search-section {
-    padding: 15px;
-    text-align: center;
+    padding: 15px;                     /* espace autour de la zone recherche */
+    text-align: center;               /* centre le formulaire */
 }
 
+/* Champ de recherche : touche <input class="search-input"> */
 .search-input {
-    padding: 5px;
-    width: 250px;
+    padding: 5px;                      /* espace intérieur du champ */
+    width: 250px;                      /* largeur fixe */
 }
 
+/* Bouton recherche : touche <button class="search-btn"> */
 .search-btn {
-    padding: 5px 10px;
-    border: 1px solid #0095f6;
-    background-color: #0095f6;
-    color: white;
-    cursor: pointer;
+    padding: 5px 10px;                /* taille du bouton */
+    border: 1px solid #0095f6;        /* bordure bleue */
+    background-color: #0095f6;        /* fond bleu */
+    color: white;                     /* texte blanc */
+    cursor: pointer;                  /* curseur main */
 }
 
-/* --- Zone principale / images --- */
+/* --- Zone principale : touche <main class="main-content"> --- */
 .main-content {
-    padding: 15px;
+    padding: 15px;                    /* espace autour de la zone images */
 }
 
+/* Grille d’images : touche <div class="photo-grid"> */
 .photo-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: flex;                    /* images alignées horizontalement */
+    flex-wrap: wrap;                 /* retour à la ligne si nécessaire */
+    gap: 10px;                       /* espace entre les images */
 }
 
+/* Images : touche UNIQUEMENT les <img> dans .photo-grid */
 .photo-grid img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    cursor: pointer;
+    width: 200px;                    /* largeur de l’image */
+    height: 200px;                   /* hauteur de l’image */
+    object-fit: cover;               /* remplit sans déformer */
+    cursor: pointer;                 /* curseur main au survol */
 }
 
-/* --- Modal général --- */
+/* --- Classe hidden : touche tous les éléments avec class="hidden" --- */
 .hidden {
-    display: none;
+    display: none;                   /* cache complètement l’élément */
 }
 
+/* Modal général : touche tous les <div class="modal"> */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed;                 /* reste fixe à l’écran */
+    top: 0;                          /* positionné en haut */
+    left: 0;                         /* positionné à gauche */
+    width: 100%;                     /* largeur complète de l’écran */
+    height: 100%;                    /* hauteur complète de l’écran */
+    background-color: rgba(0,0,0,0.5); /* fond noir semi-transparent */
+    display: flex;                   /* active flexbox */
+    justify-content: center;         /* centre horizontalement */
+    align-items: center;             /* centre verticalement */
 }
 
+/* Contenu du modal image : touche <div class="modal-content"> */
 .modal-content {
-    background-color: white;
-    padding: 10px;
-    max-width: 800px;
-    width: 90%;
+    background-color: white;         /* fond blanc du popup */
+    padding: 10px;                   /* espace intérieur */
+    max-width: 800px;                /* largeur maximale */
+    width: 90%;                      /* largeur responsive */
 }
 
+/* Bouton fermer : touche <span class="modal-close"> */
 .modal-close {
-    float: right;
-    cursor: pointer;
+    float: right;                    /* place le X à droite */
+    cursor: pointer;                 /* curseur main */
 }
+/* RAHIN 
 
-/* --- Image dans le modal --- */
+/* --- Image dans le modal : touche <img class="modal-img"> --- */
 .modal-img {
-    max-width: 100%;
-    display: block;
-    margin-bottom: 10px;
+    max-width: 100%;                 /* image ne dépasse pas le modal */
+    display: block;                  /* enlève les marges inline */
+    margin-bottom: 10px;             /* espace sous l’image */
 }
 
-/* --- Like --- */
+/* --- Likes : touche la section like --- */
 .like-section {
-    margin-bottom: 10px;
+    margin-bottom: 10px;             /* espace entre like et commentaires */
 }
 
+/* Bouton like : touche <button class="like-btn"> */
 .like-btn {
-    padding: 5px 10px;
-    border: 1px solid #ff4d4d;
-    background-color: #ff4d4d;
-    color: white;
-    cursor: pointer;
+    padding: 5px 10px;               /* taille du bouton */
+    border: 1px solid #ff4d4d;       /* bordure rouge */
+    background-color: #ff4d4d;       /* fond rouge */
+    color: white;                    /* texte blanc */
+    cursor: pointer;                 /* curseur main */
 }
 
-/* --- Commentaires --- */
+/* --- Commentaires : touche la zone commentaires --- */
 .comments-section {
-    margin-top: 10px;
+    margin-top: 10px;                /* espace au-dessus des commentaires */
 }
 
+/* Liste commentaires : touche <div class="comments-list"> */
 .comments-list {
-    max-height: 150px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    padding: 5px;
+    max-height: 150px;               /* hauteur maximale */
+    overflow-y: auto;                /* scroll vertical si trop de commentaires */
+    margin-bottom: 10px;             /* espace sous la liste */
+    border: 1px solid #ddd;          /* bordure grise */
+    padding: 5px;                    /* espace intérieur */
 }
 
+/* Formulaire commentaire : touche <form class="comment-form"> */
 .comment-form {
-    display: flex;
-    gap: 5px;
+    display: flex;                   /* champ et bouton sur une ligne */
+    gap: 5px;                        /* espace entre eux */
 }
 
+/* Champ commentaire : touche <input class="comment-input"> */
 .comment-input {
-    flex: 1;
-    padding: 5px;
+    flex: 1;                         /* prend tout l’espace disponible */
+    padding: 5px;                    /* espace intérieur */
 }
 
+/* Bouton envoyer : touche <button class="comment-btn"> */
 .comment-btn {
-    padding: 5px 10px;
-    border: 1px solid #0095f6;
-    background-color: #0095f6;
-    color: white;
-    cursor: pointer;
+    padding: 5px 10px;               /* taille du bouton */
+    border: 1px solid #0095f6;       /* bordure bleue */
+    background-color: #0095f6;       /* fond bleu */
+    color: white;                    /* texte blanc */
+    cursor: pointer;                 /* curseur main */
 }
 
-/* --- Modals login / signup --- */
+/* --- Modals login / signup : touche <div class="modal-box"> --- */
 .modal-box {
-    background-color: white;
-    padding: 15px;
-    width: 300px;
-    position: relative;
+    background-color: white;         /* fond blanc du modal */
+    padding: 15px;                   /* espace intérieur */
+    width: 300px;                    /* largeur fixe */
+    position: relative;              /* permet de positionner le X */
 }
 
+/* Bouton fermer login/signup : touche <span class="close-btn"> */
 .close-btn {
-    position: absolute;
-    top: 5px;
-    right: 8px;
-    cursor: pointer;
+    position: absolute;              /* position libre dans le modal */
+    top: 5px;                        /* distance du haut */
+    right: 8px;                      /* distance de la droite */
+    cursor: pointer;                 /* curseur main */
 }
 
+/* Formulaire auth : touche <form class="auth-form"> */
 .auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 20px;
+    display: flex;                   /* active flexbox */
+    flex-direction: column;          /* éléments en colonne */
+    gap: 8px;                        /* espace entre les champs */
+    margin-top: 20px;                /* espace au-dessus du formulaire */
 }
 
+/* Champs auth : touche <input class="auth-input"> */
 .auth-input {
-    padding: 5px;
+    padding: 5px;                    /* espace intérieur */
 }
 
+/* Bouton auth : touche <button class="auth-btn"> */
 .auth-btn {
-    padding: 5px 10px;
-    border: 1px solid #f60000;
-    background-color: #f60000;
-    color: white;
-    cursor: pointer;
-}
-
-/*---Ajout Alex Bilan, forcer le masquage---*/
-.hidden {
-    display: none !important;
+    padding: 5px 10px;               /* taille du bouton */
+    border: 1px solid #f60000;       /* bordure rouge */
+    background-color: #f60000;       /* fond rouge */
+    color: white;                    /* texte blanc */
+    cursor: pointer;                 /* curseur main */
 }
